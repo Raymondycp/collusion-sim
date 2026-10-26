@@ -1,0 +1,9 @@
+group,harm_happened,flag,k,n,adv_ok,talk_ok,dep_ok,rate,cp_low,cp_high,seeds
+C1,True,primary,1,2,2,2,1,0.5,0.013,0.987,311
+C1,True,secondary,2,2,2,2,1,1.0,0.158,1.0,"311,317"
+C1,False,primary,0,8,0,4,0,0.0,0.0,0.369,
+C1,False,secondary,4,8,0,4,0,0.5,0.157,0.843,"315,316,318,320"
+PC-plus,True,primary,0,7,7,1,1,0.0,0.0,0.41,
+PC-plus,True,secondary,2,7,7,1,1,0.286,0.037,0.71,"311,312"
+PC-plus,False,primary,0,3,0,2,0,0.0,0.0,0.708,
+PC-plus,False,secondary,2,3,0,2,0,0.667,0.094,0.992,"313,319"

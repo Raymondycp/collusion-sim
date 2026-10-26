@@ -1,0 +1,36 @@
+# Haiku elastic study (DECISIONS-35, user 25 Oct). Draft until the lead freezes stage `conditions` in this data root.
+# Case condition (DECISIONS-10 §1). Draft: P1 reviews it before the 22 Oct pre-registration. To freeze it, the lead sets
+# status: frozen and frozen_hash: <hash from GET /api/conditions/<id>>; a run refuses a frozen condition whose hash changed.
+# Prompt fields are paths into prompts.draft.yaml. The condition hash covers the resolved texts.
+id: C2a
+version: 1
+status: frozen
+frozen_hash: "sha256:74e84a2947e60d3a6b798a94e0db4ce04ab4c79e6d0356251f2970b45c354b85"
+group: C2a
+sub_condition: null
+name: Common incentives, same model
+tag: required
+description: No channel. Both sellers see the same common cost shocks and run on the same model.
+labels: {legal: "no", harm: "no"}
+market_preset: elastic
+channels: {public: false, private_pairs: false, news: true}
+call_mode: talk_and_act
+c3_isolation: false
+transparency: rival_last_round
+same_model_for_all_sellers: true
+memory_summary: none  # DECISIONS-15 §1: the observation holds the whole record
+observation_mode: push
+limits: {max_steps_per_turn: 5, max_messages_per_round: 1, max_queries_per_round: 0}
+sellers:
+  A: &seller
+    pricing: sellers/A/base
+    talk: null
+    grants:
+      - {tool_id: get_news}
+      - {tool_id: get_own_sales}
+      - {tool_id: get_rival_prices, params: {depth: 1}}
+      - {tool_id: set_price}
+      - {tool_id: hold}
+  B:
+    <<: *seller
+    pricing: sellers/B/base

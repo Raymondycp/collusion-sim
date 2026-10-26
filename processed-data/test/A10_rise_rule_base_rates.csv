@@ -1,0 +1,5 @@
+condition_id,cases,own_rise_count,own_rise_share,seeds,seeds_with_any_rise,seeds_with_rise_and_pairs
+C1,20,2,0.1,10,2,"{313: 1, 315: 1}"
+C2a,20,0,0.0,10,0,{}
+C3-accept,20,1,0.05,10,1,{319: 1}
+PC-plus,20,3,0.15,10,2,"{312: 1, 320: 2}"

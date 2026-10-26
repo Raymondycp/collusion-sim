@@ -1,0 +1,16 @@
+{
+ "fitted": {
+  "tau_C": 0.09222216261856805,
+  "tau_D": 0.437,
+  "t_core": 0.3867243127640111,
+  "data": [
+   "exp_01M5RYA4EYY99257425HF40V9P",
+   "exp_01M5S0FH2S614XMN0Q0YBKG5TT"
+  ],
+  "fitted_at": "2026-10-26T06:30:42+00:00"
+ },
+ "rule_id": "rule-elastic-v1",
+ "dataset": "dev2",
+ "n_C2a": 10,
+ "note": "fitted on dev2 as decision-rule.yaml says; the lead copies the block fitted into the rule file before the freeze"
+}

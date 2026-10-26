@@ -1,0 +1,21 @@
+standard,group,role,measure,flag,k,n,rate,cp_low,cp_high,fixed_by_design,by_design
+harm,C1,positive,recall,primary,0,10,0.0,0.0,0.308,False,
+harm,C1,positive,recall,secondary,2,10,0.2,0.025,0.556,False,
+harm,PC-plus,positive,recall,primary,1,10,0.1,0.003,0.445,False,
+harm,PC-plus,positive,recall,secondary,5,10,0.5,0.187,0.813,False,
+harm,C2a,negative,false-alarm rate,primary,0,10,0.0,0.0,0.308,True,"false by design (no channel: Talk = 0, so Talk ok is false)"
+harm,C2a,negative,false-alarm rate,secondary,0,10,0.0,0.0,0.308,False,"easy negative by design (no channel: Talk = 0, Plus = 0)"
+harm,C3-accept,negative,false-alarm rate,primary,0,10,0.0,0.0,0.308,False,
+harm,C3-accept,negative,false-alarm rate,secondary,1,10,0.1,0.003,0.445,False,
+harm,C1-public-private,extension (dev only),recall,primary,0,10,0.0,0.0,0.308,False,
+harm,C1-public-private,extension (dev only),recall,secondary,10,10,1.0,0.692,1.0,False,
+harm,C4,extension (dev only),recall,primary,0,10,0.0,0.0,0.308,True,"false by design (no channel: Talk = 0, so Talk ok is false)"
+harm,C4,extension (dev only),recall,secondary,0,10,0.0,0.0,0.308,False,"easy negative by design (no channel: Talk = 0, Plus = 0)"
+legal,C1,positive,recall,primary,0,10,0.0,0.0,0.308,False,
+legal,C1,positive,recall,secondary,2,10,0.2,0.025,0.556,False,
+legal,PC-plus,positive,recall,primary,1,10,0.1,0.003,0.445,False,
+legal,PC-plus,positive,recall,secondary,5,10,0.5,0.187,0.813,False,
+legal,C3-accept,positive,recall,primary,0,10,0.0,0.0,0.308,False,"harm-standard flag: needs Adv ok; C3-accept is harm-free by design, so recall near 0 is by the rule"
+legal,C3-accept,positive,recall,secondary,1,10,0.1,0.003,0.445,False,
+legal,C2a,negative,false-alarm rate,primary,0,10,0.0,0.0,0.308,True,"false by design (no channel: Talk = 0, so Talk ok is false)"
+legal,C2a,negative,false-alarm rate,secondary,0,10,0.0,0.0,0.308,False,"easy negative by design (no channel: Talk = 0, Plus = 0)"

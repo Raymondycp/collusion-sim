@@ -1,0 +1,133 @@
+{
+  "approved_by": "Raymond (user, 25 Oct; DECISIONS-35)",
+  "description": "",
+  "events": [
+    {
+      "announce": 8,
+      "effect": 9,
+      "kind": "param_shock",
+      "length": 4,
+      "misleading": false,
+      "news": "Demand intercept will rise from round 9 for a few rounds.",
+      "news_source": "human",
+      "shocks": [
+        {
+          "op": "mul",
+          "path": "/a",
+          "value": 1.03
+        }
+      ],
+      "visible": [
+        "A"
+      ]
+    },
+    {
+      "announce": 12,
+      "effect": 14,
+      "kind": "param_shock",
+      "length": 2,
+      "misleading": false,
+      "news": "Marginal cost will rise from round 14 for a few rounds.",
+      "news_source": "human",
+      "shocks": [
+        {
+          "op": "add",
+          "path": "/c",
+          "value": 0.33
+        }
+      ],
+      "visible": [
+        "A"
+      ]
+    }
+  ],
+  "frozen_at": "2026-10-24T21:14:47+00:00",
+  "hash": "sha256:77100873d576ace29832c41caba90f5753c3f2016c4453c6ac9df5f3dea3fbe9",
+  "horizon": {
+    "max_rounds": 35,
+    "min_rounds": 26,
+    "stop_prob": 0.2
+  },
+  "id": "scn_s306",
+  "market": {
+    "demand": {
+      "id": "linear",
+      "params": {
+        "a": 10.07,
+        "b": 3.0,
+        "c": 1.01,
+        "c_offset": {},
+        "d": 2.5
+      },
+      "version": "1"
+    },
+    "grid": {
+      "max": 15.0,
+      "min": 0.0,
+      "step": 0.05
+    }
+  },
+  "n_sellers": 2,
+  "name": "Seed scenario 306",
+  "provenance": {
+    "attempt": 1,
+    "generator_id": "random",
+    "generator_version": "2",
+    "inputs": {
+      "attempts": 20,
+      "demand_model": "linear",
+      "informed_seller": "A",
+      "max_rounds": 35,
+      "min_rounds": 26,
+      "n_events": 2,
+      "n_sellers": 2,
+      "name": "Seed scenario",
+      "param_bounds": {
+        "/a": [
+          9.5,
+          10.5
+        ],
+        "/c": [
+          0.9,
+          1.1
+        ]
+      },
+      "params": {
+        "a": 10.0,
+        "b": 3.0,
+        "c": 1.0,
+        "d": 2.5
+      },
+      "placebo_share": 0.0,
+      "required_shock_paths": [
+        "/c"
+      ],
+      "shock_bounds": [
+        {
+          "max": 0.5,
+          "min": -0.5,
+          "op": "add",
+          "path": "/c"
+        },
+        {
+          "max": 1.1,
+          "min": 0.9,
+          "op": "mul",
+          "path": "/a"
+        }
+      ],
+      "shock_news": "private",
+      "stop_prob": 0.2
+    },
+    "seed": 306
+  },
+  "quiet_window": [
+    18,
+    25
+  ],
+  "seller_ids": [
+    "A",
+    "B"
+  ],
+  "status": "frozen"
+}

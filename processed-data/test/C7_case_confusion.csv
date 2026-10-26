@@ -1,0 +1,7 @@
+case (rule output),C1,C2a,C3-accept,PC-plus
+coordinated harmful action,1,0,0,0
+talk without behaviour change,4,0,6,2
+"talk with co-movement, no harm",0,0,0,0
+"talk with advantage, no co-movement",1,0,0,1
+"parallel conduct, cause undetermined",0,0,0,1
+independent conduct,4,10,4,6

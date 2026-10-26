@@ -1,0 +1,7 @@
+condition_id,cases,own_rise_count,own_rise_share,seeds,seeds_with_any_rise,seeds_with_rise_and_pairs
+C1,70,6,0.086,10,2,"{305: 3, 308: 3}"
+C1-public-private,70,14,0.2,10,4,"{302: 4, 304: 4, 306: 1, 308: 5}"
+C2a,70,0,0.0,10,0,{}
+C3-accept,70,0,0.0,10,0,{}
+C4,70,0,0.0,10,0,{}
+PC-plus,70,6,0.086,10,2,"{307: 3, 309: 3}"

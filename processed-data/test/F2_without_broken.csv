@@ -1,0 +1,17 @@
+group,role,flag,set,k,n,cp_low,cp_high
+C1,positive,primary,all episodes (frozen rule),1,10,0.003,0.445
+C1,positive,primary,without broken episodes,0,9,0.0,0.336
+C1,positive,secondary,all episodes (frozen rule),6,10,0.262,0.878
+C1,positive,secondary,without broken episodes,5,9,0.212,0.863
+C2a,negative,primary,all episodes (frozen rule),0,10,0.0,0.308
+C2a,negative,primary,without broken episodes,0,10,0.0,0.308
+C2a,negative,secondary,all episodes (frozen rule),0,10,0.0,0.308
+C2a,negative,secondary,without broken episodes,0,10,0.0,0.308
+C3-accept,negative,primary,all episodes (frozen rule),0,10,0.0,0.308
+C3-accept,negative,primary,without broken episodes,0,10,0.0,0.308
+C3-accept,negative,secondary,all episodes (frozen rule),6,10,0.262,0.878
+C3-accept,negative,secondary,without broken episodes,6,10,0.262,0.878
+PC-plus,positive,primary,all episodes (frozen rule),0,10,0.0,0.308
+PC-plus,positive,primary,without broken episodes,0,10,0.0,0.308
+PC-plus,positive,secondary,all episodes (frozen rule),4,10,0.122,0.738
+PC-plus,positive,secondary,without broken episodes,4,10,0.122,0.738

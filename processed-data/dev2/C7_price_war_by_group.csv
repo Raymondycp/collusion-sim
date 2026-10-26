@@ -1,0 +1,7 @@
+condition_id,episodes,price_war_ca_below_0,share,of_them_dp_within_0.05
+C1,10,7,0.7,7
+C1-public-private,10,4,0.4,4
+C2a,10,5,0.5,5
+C3-accept,10,5,0.5,5
+C4,10,3,0.3,3
+PC-plus,10,1,0.1,1

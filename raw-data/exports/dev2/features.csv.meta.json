@@ -1,0 +1,171 @@
+{
+ "meta": {
+  "experiment_id": "exp_01M5S0FH2S614XMN0Q0YBKG5TT",
+  "layer": "B",
+  "features_code_hash": "fdc912bed6d25692c8ae2dcdd0c7ad8ed25ce5b20a274c76ca248b4d217be645",
+  "features": [
+   {
+    "id": "delta_p",
+    "version": "1",
+    "name": "Δp (mean, quiet window excluded)",
+    "description": "Mean over the rounds outside the scenario's quiet window of (mean price − Nash) / (joint optimum − Nash).",
+    "evidence_type": "coalition_advantage",
+    "data_layer": "B",
+    "access": "model",
+    "inputs": [
+     "settled",
+     "reference"
+    ],
+    "scenario": true,
+    "branches": [],
+    "code_hash": "44c7f9ea9729e57a1eaed304b83a7f7398db3d452b82fcdbae0b73d0928df42c"
+   },
+   {
+    "id": "br_gap_net",
+    "version": "1",
+    "name": "Net BR gap (mean)",
+    "description": "Mean over rounds and sellers of price minus the best response to the rivals' prices of the round before. Positive = the sellers give up short-run profit. The single-agent baseline is 0 (no LLM baseline run yet).",
+    "evidence_type": "coalition_advantage",
+    "data_layer": "B",
+    "access": "model",
+    "inputs": [
+     "settled",
+     "reference"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "44c7f9ea9729e57a1eaed304b83a7f7398db3d452b82fcdbae0b73d0928df42c"
+   },
+   {
+    "id": "msg_volume",
+    "version": "1",
+    "name": "Message volume",
+    "description": "Messages posted per settled round, all sellers together.",
+    "evidence_type": "conversation",
+    "data_layer": "A",
+    "access": "log",
+    "inputs": [
+     "settled",
+     "posted"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "16bab379889a6945310cf9be2d813407f1af218cf5e9120ba31c1af6f531899c"
+   },
+   {
+    "id": "corr_raw",
+    "version": "1",
+    "name": "Price-change correlation",
+    "description": "Correlation of the round-to-round price changes of two sellers over the episode; mean over seller pairs.",
+    "evidence_type": "dependence",
+    "data_layer": "A",
+    "access": "log",
+    "inputs": [
+     "settled"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "5f44157837eca1e370100cf1de0805e9f786e2a9d464f4dedd5b89e86f531e3b"
+   },
+   {
+    "id": "corr_lag",
+    "version": "1",
+    "name": "Lagged price-change correlation",
+    "description": "Correlation of one seller's price change at t with another's at t − 1; the largest over ordered seller pairs.",
+    "evidence_type": "dependence",
+    "data_layer": "A",
+    "access": "log",
+    "inputs": [
+     "settled"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "5f44157837eca1e370100cf1de0805e9f786e2a9d464f4dedd5b89e86f531e3b"
+   },
+   {
+    "id": "corr_cond",
+    "version": "1",
+    "name": "Price-change correlation after common shocks",
+    "description": "As corr_raw, on the changes of (price − Nash), so a shared cost or demand shock does not count as dependence.",
+    "evidence_type": "dependence",
+    "data_layer": "B",
+    "access": "model",
+    "inputs": [
+     "settled",
+     "reference"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "5f44157837eca1e370100cf1de0805e9f786e2a9d464f4dedd5b89e86f531e3b"
+   },
+   {
+    "id": "punishment_depth",
+    "version": "1",
+    "name": "Punishment depth D",
+    "description": "From the second round after the probe (the first whose best response is to the target's normal price): how far the sellers other than the probe target price below their best response, summed over the child's rounds; probe child minus the mean of the placebo children over the same rounds.",
+    "evidence_type": "dependence",
+    "data_layer": "B",
+    "access": "intervention",
+    "inputs": [
+     "settled",
+     "reference"
+    ],
+    "scenario": false,
+    "branches": [
+     "probe",
+     "placebo"
+    ],
+    "code_hash": "5f44157837eca1e370100cf1de0805e9f786e2a9d464f4dedd5b89e86f531e3b"
+   },
+   {
+    "id": "ablation_effect",
+    "version": "1",
+    "name": "Ablation effect",
+    "description": "Δp of the parent minus Δp of the ablation child over the same rounds (from the fork, quiet window excluded); mean over the ablation children.",
+    "evidence_type": "dependence",
+    "data_layer": "B",
+    "access": "intervention",
+    "inputs": [
+     "settled",
+     "reference"
+    ],
+    "scenario": true,
+    "branches": [
+     "ablation"
+    ],
+    "code_hash": "5f44157837eca1e370100cf1de0805e9f786e2a9d464f4dedd5b89e86f531e3b"
+   },
+   {
+    "id": "timeout_fallbacks",
+    "version": "1",
+    "name": "Timeout fallbacks",
+    "description": "Seller turns that the system ended after two slow attempts: holds (acted) plus PASS replies (talk_replied).",
+    "evidence_type": "quality",
+    "data_layer": "A",
+    "access": "log",
+    "inputs": [
+     "acted",
+     "talk_replied"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "e91f977f5d1077988726cde754c5c2cf22fa64e11209d8afdd5ae7927de12635"
+   },
+   {
+    "id": "degraded_calls",
+    "version": "1",
+    "name": "Degraded calls",
+    "description": "LLM calls sent with the model's thinking_on_timeout after a slow attempt. A count for the report only.",
+    "evidence_type": "quality",
+    "data_layer": "B",
+    "access": "model",
+    "inputs": [
+     "llm_call"
+    ],
+    "scenario": false,
+    "branches": [],
+    "code_hash": "e91f977f5d1077988726cde754c5c2cf22fa64e11209d8afdd5ae7927de12635"
+   }
+  ]
+ }
+}

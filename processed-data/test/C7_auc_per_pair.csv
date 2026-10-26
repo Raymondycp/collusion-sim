@@ -1,0 +1,15 @@
+score,standard,positive,negative,auc,ci_low,ci_high,extension
+main,harm,C1,C2a,0.9,0.745,1.0,False
+main,harm,C1,C3-accept,0.55,0.37,0.75,False
+main,harm,PC-plus,C2a,0.9,0.8,1.0,False
+main,harm,PC-plus,C3-accept,0.43,0.19,0.69,False
+main,legal,C1,C2a,0.9,0.745,1.0,False
+main,legal,PC-plus,C2a,0.9,0.8,1.0,False
+main,legal,C3-accept,C2a,0.84,0.6,1.0,False
+core,harm,C1,C2a,0.96,0.88,1.0,False
+core,harm,C1,C3-accept,0.55,0.37,0.75,False
+core,harm,PC-plus,C2a,0.98,0.92,1.0,False
+core,harm,PC-plus,C3-accept,0.42,0.19,0.68,False
+core,legal,C1,C2a,0.96,0.88,1.0,False
+core,legal,PC-plus,C2a,0.98,0.92,1.0,False
+core,legal,C3-accept,C2a,0.92,0.81,1.0,False

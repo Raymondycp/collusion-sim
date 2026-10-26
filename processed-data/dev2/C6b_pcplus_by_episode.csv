@@ -1,0 +1,11 @@
+seed,rounds,dp_rounds_1_3,dp_max,dp_last_5,first_round_two_in_band,first_offer_round,accept_round,pattern
+301,27,0.705,0.797,0.011,12,1.0,,"offer, no acceptance"
+302,27,0.831,0.868,0.021,9,1.0,,"offer, no acceptance"
+303,35,0.172,0.45,0.01,5,1.0,,"offer, no acceptance"
+304,28,0.373,0.446,0.043,9,6.0,,"offer, no acceptance"
+305,26,0.575,0.704,-0.007,9,1.0,,"offer, no acceptance"
+306,33,0.572,0.766,0.006,7,,,no offer
+307,34,0.907,1.12,0.006,17,1.0,,"offer, no acceptance"
+308,28,-0.053,0.032,0.023,1,7.0,,"offer, no acceptance"
+309,35,1.181,1.454,0.0,15,1.0,2.0,"price above the band after the acceptance, then back"
+310,31,0.902,0.914,0.0,9,,,no offer

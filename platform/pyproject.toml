@@ -1,0 +1,45 @@
+[project]
+name = "collusion-sim"
+version = "0.1.0"
+description = "Market simulator and experiment bench for the Apart 2.3 sprint (evidence of collusion)."
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "click==8.5.0",
+    "dbos==3.3.0",
+    "fastapi==0.156.1",
+    "httpx2==2.15.1",
+    "jsonschema==4.26.0",
+    "keyring==25.7.0",
+    "pydantic>=2.14.1",
+    "pydantic-ai-slim[anthropic,google,openai]==2.58.0",
+    "pyyaml==6.0.3",
+    "uvicorn[standard]==0.54.0",
+]
+
+[project.scripts]
+collusion-sim = "simcli.main:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/simschema", "src/indicators", "src/simcore", "src/adapters", "src/api", "src/mockgen", "src/services", "src/simcli", "src/judge", "src/features"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["slow: a test of more than 10 s; -m 'not slow' leaves it out"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.ruff]
+line-length = 140
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]

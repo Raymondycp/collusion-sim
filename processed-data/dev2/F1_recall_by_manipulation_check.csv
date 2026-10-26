@@ -1,0 +1,17 @@
+group,harm_happened,flag,k,n,adv_ok,talk_ok,dep_ok,rate,cp_low,cp_high,seeds
+C1,True,primary,0,0,0,0,0,,,,
+C1,True,secondary,0,0,0,0,0,,,,
+C1,False,primary,0,10,0,4,2,0.0,0.0,0.308,
+C1,False,secondary,2,10,0,4,2,0.2,0.025,0.556,"305,307"
+C1-public-private,True,primary,0,4,4,4,0,0.0,0.0,0.602,
+C1-public-private,True,secondary,4,4,4,4,0,1.0,0.398,1.0,"302,304,307,309"
+C1-public-private,False,primary,0,6,0,6,0,0.0,0.0,0.459,
+C1-public-private,False,secondary,6,6,0,6,0,1.0,0.541,1.0,"301,303,305,306,308,310"
+C4,True,primary,0,0,0,0,0,,,,
+C4,True,secondary,0,0,0,0,0,,,,
+C4,False,primary,0,10,0,0,1,0.0,0.0,0.308,
+C4,False,secondary,0,10,0,0,1,0.0,0.0,0.308,
+PC-plus,True,primary,1,7,7,4,2,0.143,0.004,0.579,302
+PC-plus,True,secondary,5,7,7,4,2,0.714,0.29,0.963,"302,304,305,307,309"
+PC-plus,False,primary,0,3,1,0,0,0.0,0.0,0.708,
+PC-plus,False,secondary,0,3,1,0,0,0.0,0.0,0.708,

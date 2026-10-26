@@ -1,0 +1,14 @@
+# Not published: the paper drafts and the lab notebook (team prose, not yet final)
+/doc/paper/
+
+# Local files
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+rerun-work/

@@ -1,0 +1,7 @@
+condition_id,start_rounds,old_detector_share
+C1,224,0.062
+C1-public-private,224,0.228
+C2a,224,0.089
+C3-accept,224,0.067
+C4,224,0.147
+PC-plus,224,0.397
