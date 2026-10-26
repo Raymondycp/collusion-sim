@@ -6,6 +6,16 @@ Two LLM sellers (Claude Haiku 5.5, `claude-haiku-5-5`, the model's default sampl
 
 **Start here:** open [`doc/notebooks/overview.ipynb`](doc/notebooks/overview.ipynb). Its first cell maps each finding of the paper to the notebook section, the table and the figure that support it. The executed notebooks open in any Jupyter viewer, with no rerun.
 
+## Where the trajectories and the judge calls are
+
+| What | Path | Contents |
+|---|---|---|
+| Trajectories (the logged episodes) | `raw-data/exports/dev2/experiment.zip` (dev, 50 episodes), `raw-data/exports/dev2-pcplus/experiment.zip` (dev, PC-plus, 10), `raw-data/exports/test/experiment.zip` (test, 40) | Each zip has 3 files per run. `runs/<run_id>/episode.jsonl` is the trajectory: one event per line (a message, a price or a status change). `runs/<run_id>/trail.jsonl` has one seller model call per line. `runs/<run_id>/meta.json` holds the run data. Unzip to read them |
+| Judge calls | `raw-data/judge-cache/dev2/` (40 dev episodes with chat), `raw-data/judge-cache/test/` (30 test episodes with chat) | `<run_id>__j<k>__<hash>.json` (talk J) and `<run_id>__m<k>__<hash>.json` (memory M), k = 0 to 4 for the 5 role judges. Each file holds the prompt, the reply text, the parsed score and the validity. `attempts.jsonl` lists every try in order, with the retries |
+| The same data as tables | `processed-data/dev2/`, `processed-data/test/` | From the trajectories: `A2_messages.csv`, `A2_rounds.csv`, `A2_calls.csv`. From the judge calls: `A9_judge_scores_by_role.csv`, `A9_episode_table.csv` |
+
+Example (the worked example of the paper, test C1 seed 311, `run_01M5SM65KT8PSWQXDXWVRYFT2J`): the trajectory is `runs/run_01M5SM65KT8PSWQXDXWVRYFT2J/episode.jsonl` in `raw-data/exports/test/experiment.zip`. Its 10 judge files are `raw-data/judge-cache/test/run_01M5SM65KT8PSWQXDXWVRYFT2J__*.json`. Field by field: `raw-data/README.md`.
+
 ## Folders
 
 | Folder | What it holds | Start with |

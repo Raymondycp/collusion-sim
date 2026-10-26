@@ -2,6 +2,12 @@
 
 Everything here was written by a program, not by hand, and is never edited. The notebooks in `doc/notebooks/` read only these files (and the study configuration in `platform/studies/haiku-elastic/`).
 
+**Where the trajectories and the judge calls are**
+
+- **Trajectories:** in `exports/<dev2 | dev2-pcplus | test>/experiment.zip`. Each run has `runs/<run_id>/episode.jsonl` (the trajectory: one event per line) and `runs/<run_id>/trail.jsonl` (one seller model call per line). Unzip to read them. Fields: sections `episode.jsonl` and `trail.jsonl` below.
+- **Judge calls:** in `judge-cache/<dev2 | test>/`. Each file `<run_id>__j<k>__<hash>.json` (talk) or `<run_id>__m<k>__<hash>.json` (memory) holds one call of role judge k (0 to 4). `attempts.jsonl` lists every try. Fields: section `judge-cache/<set>/` below.
+- **The same data as tables:** `processed-data/<dev2 | test>/A2_*.csv` (from the trajectories) and `A9_*.csv` (from the judge calls). See `processed-data/README.md`.
+
 ## Folder map
 
 | Path | Experiment | Conditions | Seeds | Episodes |

@@ -10,6 +10,15 @@ The notebooks parse `raw-data/` (data engineering) and write these tables. They 
 
 Keys in every table: `run_id` (one episode), `condition_id`, `seed`. Seeds pair the conditions: the same seed gives the same market and shocks in every condition. Round `t` starts at 1; a message written in round t is read in round t + 1.
 
+## Where the tables come from
+
+| Tables | Source in `raw-data/` |
+|---|---|
+| `A2_runs.csv`, `A2_rounds.csv`, `A2_messages.csv`, `A2_calls.csv` | The trajectories: `runs/<run_id>/episode.jsonl` and `trail.jsonl` inside `raw-data/exports/<set>/experiment.zip` |
+| `A9_judge_scores_by_role.csv`, `A9_memory_by_round.csv`, and the columns `J`, `M` of `A9_episode_table.csv` | The judge calls: `raw-data/judge-cache/<dev2 | test>/<run_id>__<j or m><k>__<hash>.json` |
+
+`raw-data/README.md` gives the fields of each source file.
+
 ## Rules
 
 - Explore on `dev2/` only. A pattern found in `test/` is a description, not a confirmation.
