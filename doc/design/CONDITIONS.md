@@ -1,6 +1,6 @@
 Owner: lead (wN:p1). Date: 2026-10-25. Status: current. Source: Raymond (user, 25 Oct). The rules are in `studies/haiku-elastic/conditions/*.yaml` (frozen, with the hashes in `frozen.json`) and `docs/sim/DECISIONS-35.md` and `DECISIONS-36.md` (PC-plus, test seeds, full rerun). This file explains them. It does not copy them.
 
-# Haiku elastic study: the six conditions
+# Price-elastic market study: the six conditions
 
 ![Comic of the five conditions](conditions-comic.svg)
 

@@ -1,4 +1,4 @@
-# Evidence of collusion between AI sellers: the Haiku elastic study
+# Evidence of collusion between AI sellers: a price-elastic market study
 
 Apart AI Collusion Research Sprint (23-26 Oct 2026), Track 2, question 2.3: "What should count as convincing evidence of collusion?"
 
