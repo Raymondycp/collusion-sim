@@ -13,6 +13,7 @@ layout. Every file, and every member of every zip, is scanned for keys (KEY-SCAN
 Usage, from the repository root: python paper/analysis-elastic/package_study.py [destination]   (default release/haiku-elastic-study)
 The package is built in <destination>.new and replaces <destination> only when it is complete and clean.
 """
+import csv
 import json
 import os
 import re
@@ -142,29 +143,61 @@ def check_links() -> list[str]:
 
 def dictionary() -> str:
     """Table list of processed-data: rows, columns and the notebook cell that writes each table."""
-    def cells(nb: Path) -> list[tuple[int, str, str]]:
-        cs, out = json.loads(nb.read_text(encoding="utf-8"))["cells"], []
-        for kind in ("code", "markdown"):   # code cells first; a table named at run time is found by the markdown cell that names it
-            heading = ""
-            for i, c in enumerate(cs):
-                src = "".join(c["source"])
-                if c["cell_type"] == "markdown":
-                    h = [l.lstrip("# ").strip() for l in src.splitlines() if l.startswith("#")]
-                    heading = h[0] if h else heading
-                if c["cell_type"] == kind:
-                    out.append((i, heading, src))
+    write = re.compile(r"\.to_csv\(|\.to_json\(|json\.dump\(|\.write_text\(")
+    literal = re.compile(r"""f?"([^"]*?\.(?:csv|json))"|f?'([^']*?\.(?:csv|json))'""")   # a double-quoted name may hold single quotes: f"..{'a' if x else 'b'}.."
+    lit = lambda l: [m.group(1) or m.group(2) for m in literal.finditer(l)]
+
+    def name_pattern(lit: str) -> re.Pattern:
+        """A file-name literal as a pattern: the base name, with each f-string field {...} matching any text."""
+        base = re.split(r"[\\/]", lit)[-1]
+        return re.compile("".join("[^/]+" if p.startswith("{") else re.escape(p) for p in re.split(r"(\{[^}]*\})", base)) + r"\Z")
+
+    def writers(nb: Path) -> list[tuple[int, str, list[re.Pattern]]]:
+        """Per code cell: its number, the heading above it, and the file-name patterns it writes (a write line that names the file, or,
+        for a write through a variable, the names the cell builds with TABLES / or OUT /)."""
+        out, heading = [], ""
+        for i, c in enumerate(json.loads(nb.read_text(encoding="utf-8"))["cells"]):
+            src = "".join(c["source"])
+            if c["cell_type"] == "markdown":
+                h = [l.lstrip("# ").strip() for l in src.splitlines() if l.startswith("#")]
+                heading = h[0] if h else heading
+                continue
+            lines_ = src.splitlines()
+            cell_files = [f for l in lines_ for f in lit(l)]
+            words = set(re.findall(r"""["']([A-Za-z0-9_.-]+)["']""", src))
+            pats = []
+            for l in lines_:
+                if not write.search(l):
+                    continue
+                own = lit(l)
+                if not own:   # a write through a variable (TABLES / name_): the file names that the cell spells out
+                    pats += cell_files
+                for p in own:
+                    base = re.split(r"[\\/]", p)[-1]
+                    if re.fullmatch(r"\{[^}]*\}(\.\w+)", base):   # only a field, as f"{name}.csv": the names are the quoted words of the cell
+                        pats += [w + base[base.index("}") + 1:] for w in words]
+                    else:
+                        pats.append(p)
+            out.append((i, heading, [name_pattern(p) for p in pats]))
         return out
 
-    lines = []
+    lines, unmatched = [], []
     for name, nb in (("dev2", "analysis.ipynb"), ("test", "analysis-test.ipynb"), ("overview", "overview.ipynb")):
-        cs = cells(A / nb)
+        ws = writers(A / nb)
         lines += [f"### `{name}/` (written by `doc/notebooks/{nb}`)", "", "| Table | Rows | Cell | Section | Columns |", "|---|---|---|---|---|"]
-        for f in sorted(TABLES[name].glob("*.csv")):
-            with open(f, encoding="utf-8") as fh:
-                cols, rows = fh.readline().strip(), sum(1 for _ in fh)
-            hit = next(((n, h) for n, h, s in cs if f.name in s or f'"{f.stem}' in s), (None, ""))
-            lines.append(f"| `{f.name}` | {rows} | {hit[0] if hit[0] is not None else 'n/a'} | {hit[1][:70]} | {cols.replace(',', ', ')} |")
+        for f in sorted([*TABLES[name].glob("*.csv"), *TABLES[name].glob("*.json")]):
+            if f.suffix == ".csv":
+                with open(f, encoding="utf-8", newline="") as fh:   # csv records, not lines: a quoted message may hold line breaks
+                    rd = csv.reader(fh)
+                    cols, rows = ", ".join(next(rd)), str(sum(1 for _ in rd))
+            else:
+                cols, rows = ", ".join(json.loads(f.read_text(encoding="utf-8"))), "1 object"
+            hit = next(((n, h) for n, h, ps in ws if any(p.match(f.name) for p in ps)), None)
+            if hit is None:
+                unmatched.append(f"{name}/{f.name}")
+            lines.append(f"| `{f.name}` | {rows} | {hit[0] if hit else 'n/a'} | {hit[1][:70] if hit else ''} | {cols} |")
         lines.append("")
+    print("tables without a writer cell:", unmatched or "none")
     return "\n".join(lines)
 
 
